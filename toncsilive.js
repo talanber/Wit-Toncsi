@@ -7,12 +7,13 @@ const actions = {
       return resolve();
     });
   },
-  getForecast({context, entities}) {
-    return new Promise(function(resolve, reject) {
-      // Here should go the api call, e.g.:
-      // context.forecast = apiCall(context.loc)
-      context.forecast = 'sunny';
-      return resolve(context);
-    });
-  },
+getForecast({context, entities}) 
+{ return new Promise(function(resolve, reject) 
+{ var location = firstEntityValue(entities, "location") 
+if (location) 
+   { context.forecast = 'borzalmas itt: ' + location + ' - De Gödöllőn csodálatos idő lesz!'; // we should call a weather API here delete context.missingLocation; } 
+else 
+   { context.missingLocation = true; delete context.forecast; } 
+return resolve(context); });
+},
 };
